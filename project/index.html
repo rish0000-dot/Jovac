@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>learn:// — AI Topic Roadmap</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top command bar -->
+  <header class="cmdbar">
+    <div class="cmdbar-left">
+      <span class="prompt-glyph">λ</span>
+      <span class="brand">learn://</span>
+    </div>
+    <div class="cmdbar-center">
+      <span class="cmd-prefix">topic ~</span>
+      <input id="topicInput" type="text" placeholder="javascript, python, react..." autocomplete="off">
+      <button id="genBtn">build tree ⏎</button>
+    </div>
+    <div class="cmdbar-right">
+      <button id="keyBtn" title="Set your free Gemini API key">🔑 API key</button>
+    </div>
+  </header>
+
+  <!-- API key modal -->
+  <div id="keyModal" class="modal hidden">
+    <div class="modal-box">
+      <h3>Gemini API Key</h3>
+      <p>Free key from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>. Saved only in your browser (localStorage).</p>
+      <input id="apiKeyInput" type="password" placeholder="AIza...">
+      <div class="modal-actions">
+        <button id="saveKeyBtn">Save</button>
+        <button id="closeKeyBtn" class="ghost">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="app">
+
+    <!-- Sidebar: file-tree style topic checklist -->
+    <aside class="explorer">
+      <div class="explorer-head">
+        <span id="rootLabel">EXPLORER — no topic yet</span>
+        <span id="progressPct" class="pct">0%</span>
+      </div>
+      <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+      <ul id="treeList" class="tree">
+        <li class="empty-hint">Type a topic above and press "build tree" to generate a study roadmap.</li>
+      </ul>
+    </aside>
+
+    <!-- Main editor-style panel -->
+    <main class="editor">
+      <div class="tabbar">
+        <div id="activeTab" class="tab active">welcome.md</div>
+      </div>
+      <div id="editorBody" class="editor-body">
+        <div class="welcome">
+          <p class="line1">// select a subtopic from the tree to load its notes</p>
+          <p class="line2">// AI will explain it with a real-world example + working code</p>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <footer class="statusbar">
+    <span id="statusText">ready</span>
+    <span class="sep">|</span>
+    <span>Not affiliated with Google — uses the free Gemini API tier</span>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
